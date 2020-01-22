@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FakeServiceService } from '../fake-service.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-route-a',
@@ -8,10 +9,10 @@ import { FakeServiceService } from '../fake-service.service';
 })
 export class RouteAComponent implements OnInit {
   posts:any;
-  constructor(private fakeService:FakeServiceService) { }
+  constructor(private fakeService:FakeServiceService,private route:ActivatedRoute) { }
 
   ngOnInit() {
-    this.fakeService.getPosts().subscribe(data=>this.posts=data);
+    this.posts = this.route.snapshot.data['posts'];
   }
 
 }
